@@ -83,4 +83,14 @@ public class Sudoku {
         int index = getIndex(row, column);
         grid.set(index, value);
     }
+
+    public void printState() {
+        for(int i = 0; i < 9; ++i) {
+            for(int j = 0; j < 9; ++j) {
+                System.out.print(get(i, j) + " ");
+            }
+            System.out.println();
+        }
+    }
+
 }
