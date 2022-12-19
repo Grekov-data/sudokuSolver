@@ -12,6 +12,7 @@ public class SudokuSolver {
         this.solved = false;
     }
 
+
     public void solve() {
         ++ITERATIONS;
         for(int i = 0; i < 9; ++i) {
@@ -35,5 +36,7 @@ public class SudokuSolver {
         //Все клетки заняты и судоку валидное.
         sudoku.printState();
         System.out.println("Iterations: " + ITERATIONS);
+        sudoku.writeToFile("result.txt");
+
     }
 }

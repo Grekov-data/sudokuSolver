@@ -1,14 +1,34 @@
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.*;
 
 //Класс будет представлять из себя поле судоку.
 public class Sudoku {
     private List<Integer> grid;     //Само поле судоку.
+    public String fileName;
 
     public Sudoku(List<Integer> grid) {
         this.grid = grid;
     }
+
+    public Sudoku(String fileName) {
+        this.grid = new ArrayList<>();
+        File initialization = new File(fileName);
+        try {
+            Scanner scan = new Scanner(initialization);
+            int i = 0;
+            while (scan.hasNextInt()) {
+                this.grid.add(i, scan.nextInt());
+                i++;
+            }
+        }
+        catch(IOException ex){
+            System.out.println(ex.getMessage());
+        }
+    }
+
 
     //Получаем index в нашем grid по номеру строки и столбца
     private int getIndex(int row, int column) {
@@ -90,6 +110,24 @@ public class Sudoku {
                 System.out.print(get(i, j) + " ");
             }
             System.out.println();
+        }
+    }
+
+    public void writeToFile(String fileName) {
+
+        try (FileWriter result = new FileWriter(fileName)) {
+
+            int j = 0;
+            for (int i = 0; i < grid.size(); i++) {
+                j++;
+                String otvet = Integer.toString(grid.get(i));
+                result.write(otvet + " ");
+                if (j % 9 == 0)
+                    result.write("\n");
+            }
+        }
+        catch(IOException ex) {
+            System.out.println(ex.getMessage());
         }
     }
 

@@ -30,6 +30,8 @@ public class Program {
         Sudoku sudoku = new Sudoku(numbers);
         SudokuSolver solver = new SudokuSolver(sudoku);
         solver.solve();
-
+        Sudoku sudoku2 = new Sudoku("input.txt");
+        SudokuSolver solver2 = new SudokuSolver(sudoku2);
+        solver2.solve();
     }
 }
